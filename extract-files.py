@@ -65,6 +65,18 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('libqti-perfd-client.so\n', ''),
     'vendor/etc/seccomp_policy/qwesd@2.0.policy': blob_fixup()
         .add_line_if_missing('pipe2: 1'),
+    ('vendor/lib64/libcodec2_soft_ac4dec.so',
+     'vendor/lib64/libcodec2_soft_ddpdec.so',
+     'vendor/lib64/libDecoderProcessor.so',
+     'vendor/lib64/libdlbdsservice.so',
+     'vendor/lib64/libdlbpreg.so',
+     'vendor/lib64/libqc2audio_hwaudiocodec.so',
+     'vendor/lib64/libswspatializer_ext.so',
+     'vendor/lib64/soundfx/libdlbvol.so',
+     'vendor/lib64/soundfx/libhwdap.so',
+     'vendor/lib64/soundfx/libmisoundfx.so',
+     'vendor/lib64/soundfx/libswspatializer.so') : blob_fixup()
+        .replace_needed('libstagefright_foundation.so', 'libstagefright_foundation-v33.so'),
     'vendor/lib64/c2.dolby.client.so': blob_fixup()
         .add_needed('dolbycodec_shim.so'),
     'vendor/lib64/libqcodec2_core.so': blob_fixup()
