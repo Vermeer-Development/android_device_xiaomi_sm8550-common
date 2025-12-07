@@ -58,8 +58,8 @@ BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
 
 BOARD_KERNEL_CMDLINE := \
-    mtdoops.fingerprint=$(LINEAGE_VERSION) \
-    swinfo.fingerprint=$(LINEAGE_VERSION) \
+    mtdoops.fingerprint=$(INFINITY_VERSION) \
+    swinfo.fingerprint=$(INFINITY_VERSION) \
     sysctl.kernel.firmware_config.force_sysfs_fallback=1
 
 BOARD_BOOTCONFIG := \
@@ -152,7 +152,7 @@ $(foreach p, $(call to-upper, $(BOARD_XIAOMI_DYNAMIC_PARTITIONS_PARTITION_LIST))
     $(eval TARGET_COPY_OUT_$(p) := $(call to-lower, $(p))))
 
 BOARD_PRODUCTIMAGE_MINIMAL_PARTITION_RESERVED_SIZE := false
-include vendor/lineage/config/BoardConfigReservedSize.mk
+include vendor/infinity/config/BoardConfigReservedSize.mk
 
 # Platform
 TARGET_BOARD_PLATFORM := kalama
