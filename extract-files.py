@@ -65,6 +65,8 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('libqti-perfd-client.so\n', ''),
     'vendor/etc/seccomp_policy/qwesd@2.0.policy': blob_fixup()
         .add_line_if_missing('pipe2: 1'),
+    'vendor/lib64/c2.dolby.client.so': blob_fixup()
+        .add_needed('dolbycodec_shim.so'),
     'vendor/lib64/libqcodec2_core.so': blob_fixup()
         .add_needed('libcodec2_shim.so'),
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()
@@ -75,12 +77,12 @@ blob_fixups: blob_fixups_user_type = {
         'odm/lib64/nfc_nci.nqx.default.hw.so'
     ): blob_fixup()
         .add_needed('libbase_shim.so'),
-    'vendor/etc/media_codecs_kalama.xml': blob_fixup()
-        .regex_replace(r'\s*<MediaCodec\b[^>]*name=\"c2\.dolby\.[^>]*>[\s\S]*?<\/MediaCodec>', '')
-        .regex_replace('.+media_codecs_(dolby_audio|google_audio|google_c2|google_telephony|vendor_audio).+\n', ''),
-    'vendor/etc/vintf/manifest/c2_manifest_vendor.xml': blob_fixup()
-        .regex_replace(r'\s*<fqname>@1\.0::IComponentStore/dolby</fqname>', '')
-        .regex_replace('.+DOLBY.+\n', ''),
+    (
+        'vendor/etc/media_codecs_kalama.xml',
+        'vendor/etc/media_codecs_kalama_vendor.xml',
+        'vendor/etc/media_codecs_kalama_vendor_without_dvenc.xml',
+    ): blob_fixup()
+        .regex_replace('.+media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).+\n', ''),
     (
         'vendor/lib64/libdpps.so',
         'vendor/lib64/libsnapdragoncolor-manager.so'
