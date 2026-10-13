@@ -399,6 +399,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml
 
+# TouchServices
+$(call inherit-product, packages/apps/TouchServices/touchservice.mk)
+
 # Ueventd
 PRODUCT_PACKAGES += \
     ueventd.qcom.rc \
